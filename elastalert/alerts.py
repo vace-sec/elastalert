@@ -2047,7 +2047,7 @@ class HiveAlerter(Alerter):
                     try:
                         artifacts.append(AlertArtifact(dataType=observable_type, data=match_data_key.format(**context)))
                     except KeyError:
-                        raise KeyError('\nformat string\n{}\nmatch data\n{}'.format(match_data_key, context))
+                        elastalert_logger.info('Observable could not be created because of a KeyError for match_data_key {}'.format(match_data_key))
 
             alert_config = {
                 'artifacts': artifacts,
