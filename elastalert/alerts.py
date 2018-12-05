@@ -2045,8 +2045,7 @@ class HiveAlerter(Alerter):
             for mapping in self.rule.get('hive_observable_data_mapping', []):
                 for observable_type, match_data_key in mapping.iteritems():
                     try:
-                        if match_data_key.replace("{match[", "").replace("]}", "") in context['match']:
-                            artifacts.append(AlertArtifact(dataType=observable_type, data=match_data_key.format(**context)))
+                        artifacts.append(AlertArtifact(dataType=observable_type, data=match_data_key.format(**context)))
                     except KeyError:
                         raise KeyError('\nformat string\n{}\nmatch data\n{}'.format(match_data_key, context))
 
